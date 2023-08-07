@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+<!-- aop -->
+<aop:aspectj-autoproxy/> <!-- aop 어노테이션 적용 -->
+<!-- 사용자 정의 클래스 적용 -->
+<context:component-scan base-package="com.sist.*"/>
+
+<!-- 
+	DispatcherServlet : 요청 -> 응답 
+	HandlerMapping : Model클래스 찾기 => @GetMapping , @PostMapping, @RequestMapping
+	ViewResolver : JSP 찾기 => 경로명과 확장자를 지정해야한다(그래야 찾아감)
+-->
+<!-- viewResolver 등록 -->
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+	p:prefix="/"
+	p:suffix=".jsp"
+/>
+
+</beans>
